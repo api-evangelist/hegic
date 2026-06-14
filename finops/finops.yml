@@ -1,0 +1,55 @@
+name: Hegic API FinOps
+description: >
+  Financial operations considerations for developers building on or integrating
+  with Hegic protocol data. Hegic is a decentralized protocol with no direct
+  API subscription costs, but data access through third-party providers and
+  on-chain gas fees carry associated costs.
+costs:
+  - name: On-Chain Gas Fees (Arbitrum)
+    description: >
+      Write interactions with Hegic smart contracts (buying options, providing
+      liquidity, exercising options) require Arbitrum ETH for gas fees.
+      Read-only calls (balanceOf, getOption, etc.) via JSON-RPC are free.
+    type: variable
+    currency: ETH
+    notes: Arbitrum gas fees are significantly lower than Ethereum mainnet
+  - name: DefiLlama API
+    description: >
+      Free for all users. No cost for querying Hegic TVL, fees, revenue,
+      and options volume data.
+    type: free
+    cost: $0
+  - name: The Graph Protocol Queries
+    description: >
+      100,000 free queries per month via Subgraph Studio. Additional queries
+      billed at GRT (The Graph token) or USD depending on plan.
+    type: freemium
+    free_tier: 100,000 queries/month
+    paid_rate: Variable; see thegraph.com/studio for current pricing
+  - name: Arbiscan API
+    description: >
+      Free tier available with API key registration (no cost). Pro plans
+      available for higher rate limits and additional endpoints.
+    type: freemium
+    free_tier: 100,000 calls/day
+    paid_plans:
+      - name: Basic
+        url: https://arbiscan.io/apis
+        notes: Check Arbiscan website for current pricing
+  - name: RPC Provider (Alchemy/Infura)
+    description: >
+      For production applications querying Hegic contract data at scale,
+      a dedicated RPC provider is recommended. Both Alchemy and Infura
+      offer free tiers.
+    type: freemium
+    free_tier: Varies by provider
+    notes: Free tiers sufficient for development; paid plans for production scale
+protocol_revenue:
+  description: >
+    Hegic protocol generates revenue from options premiums. The Stake and
+    Cover pool (HEGIC stakers) earns net protocol revenue. Per DefiLlama:
+    annualized fees approximately $1.53M, 30-day revenue approximately $39,875
+    as of mid-2026.
+  tvl: $8.48M (Arbitrum $7.61M + Ethereum $869K)
+  cumulative_options_premium_volume: $11.22M
+  treasury: $37.04M

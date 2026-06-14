@@ -1,0 +1,50 @@
+name: Hegic API Rate Limits
+description: >
+  Rate limits for APIs used to access Hegic protocol data. Hegic itself is a
+  decentralized protocol with no centralized rate limits. The APIs listed here
+  are third-party data providers that index and expose Hegic on-chain data.
+rate_limits:
+  - api: DefiLlama REST API
+    description: >
+      Free public API with no authentication required. Provides Hegic TVL,
+      fees, revenue, and options volume data.
+    url: https://defillama.com/docs/api
+    limits:
+      - type: requests
+        rate: No hard published limit; fair-use policy applies
+        notes: Heavy automated crawling may be throttled
+  - api: The Graph Protocol (Subgraph Studio)
+    description: >
+      GraphQL API for querying Hegic subgraph data. Free tier available
+      with generous monthly allowance.
+    url: https://thegraph.com/studio/
+    limits:
+      - type: queries
+        rate: 100,000 queries/month free
+        tier: Free
+      - type: queries
+        rate: Custom limits
+        tier: Growth/Enterprise (paid)
+  - api: Arbiscan API
+    description: >
+      REST API for HEGIC token and contract data on Arbitrum One.
+      Requires free API key.
+    url: https://arbiscan.io/apis
+    limits:
+      - type: requests
+        rate: 5 requests/second
+        tier: Free
+      - type: requests_daily
+        rate: 100,000 calls/day
+        tier: Free
+      - type: requests
+        rate: Higher limits available
+        tier: Pro (paid)
+  - api: Arbitrum JSON-RPC (Public)
+    description: >
+      Public Arbitrum RPC endpoint for direct smart contract calls.
+    url: https://arb1.arbitrum.io/rpc
+    limits:
+      - type: requests
+        rate: Variable; public endpoint may throttle high volume
+        notes: Use a dedicated provider (Alchemy, Infura) for production

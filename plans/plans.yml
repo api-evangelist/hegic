@@ -1,0 +1,38 @@
+name: Hegic API Plans
+description: >
+  Hegic is a decentralized protocol; there are no centralized subscription
+  plans for the protocol itself. Data access is available through free public
+  APIs (DefiLlama, The Graph) with their own tier structures, and directly
+  via open blockchain RPC endpoints.
+plans:
+  - name: Free On-Chain Access
+    description: >
+      Direct interaction with Hegic smart contracts on Arbitrum via any
+      standard JSON-RPC provider (Alchemy, Infura, public Arbitrum RPC).
+      No registration or API key required for read operations.
+    url: https://arb1.arbitrum.io/rpc
+    type: free
+    rate_limit: Varies by RPC provider
+  - name: DefiLlama Free API
+    description: >
+      DefiLlama provides free REST API access to Hegic TVL, fees, revenue,
+      and options volume data with no API key required. Rate limits apply.
+    url: https://defillama.com/docs/api
+    type: free
+    rate_limit: Generous public limits; no authentication required
+  - name: The Graph Free Tier
+    description: >
+      The Graph Protocol provides 100,000 free queries per month via
+      Subgraph Studio. GraphQL queries against Hegic subgraphs can be
+      made for options positions and protocol event history.
+    url: https://thegraph.com/studio/
+    type: free
+    queries_per_month: 100000
+  - name: Arbiscan API Free Tier
+    description: >
+      Arbiscan provides a free API tier for querying HEGIC token data on
+      Arbitrum including token transfers, holder counts, and contract events.
+      Requires a free API key registration.
+    url: https://arbiscan.io/apis
+    type: free
+    rate_limit: 5 calls/second, up to 100,000 calls/day
