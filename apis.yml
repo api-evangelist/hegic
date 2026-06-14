@@ -1,141 +1,144 @@
 name: Hegic
-description: >
-  Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum,
-  enabling users to trade ETH and WBTC call and put options with AMM mechanics.
-  Liquidity providers fund shared pools and earn premiums, while traders access
-  non-custodial options with on-chain settlement in USDC. Protocol data including
-  option positions, liquidity pool TVL, strike prices, premiums, open interest,
-  and hedge contract analytics are queryable via DefiLlama's public REST API,
-  the Arbiscan token API, and community-maintained Graph Protocol subgraphs.
+description: 'Hegic is an on-chain peer-to-pool options trading protocol deployed
+  on Arbitrum, enabling users to trade ETH and WBTC call and put options with AMM
+  mechanics. Liquidity providers fund shared pools and earn premiums, while traders
+  access non-custodial options with on-chain settlement in USDC. Protocol data including
+  option positions, liquidity pool TVL, strike prices, premiums, open interest, and
+  hedge contract analytics are queryable via DefiLlama''s public REST API, the Arbiscan
+  token API, and community-maintained Graph Protocol subgraphs.
+
+  '
 image: https://hegic.co/favicon.ico
 tags:
-  - DeFi
-  - Options Trading
-  - On-Chain
-  - Arbitrum
-  - Ethereum
-  - Liquidity Pools
-  - AMM
-  - Derivatives
-  - Web3
-created: "2026-06-14"
-modified: "2026-06-14"
+- DeFi
+- Options Trading
+- On-Chain
+- Arbitrum
+- Ethereum
+- Liquidity Pools
+- AMM
+- Derivatives
+- Web3
+created: '2026-06-14'
+modified: '2026-06-14'
 url: https://github.com/api-evangelist/hegic/blob/main/apis.yml
-specificationVersion: "0.19"
+specificationVersion: '0.19'
 apis:
-  - name: DefiLlama Hegic Protocol API
-    description: >
-      Public REST API provided by DefiLlama for querying Hegic protocol metrics
-      including TVL, fees, revenue, and options volume. Returns historical and
-      current data across Arbitrum and Ethereum deployments with no authentication
-      required.
-    image: https://defillama.com/favicon.ico
-    humanURL: https://defillama.com/protocol/hegic
-    baseURL: https://api.llama.fi
-    tags:
-      - TVL
-      - Fees
-      - Revenue
-      - Options Volume
-      - Analytics
-    properties:
-      - type: Documentation
-        url: https://defillama.com/docs/api
-      - type: OpenAPI
-        url: https://api-docs.defillama.com
-    contact:
-      - FN: DefiLlama Team
-        url: https://defillama.com
-  - name: Arbiscan Token API
-    description: >
-      Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One,
-      including token supply, holder information, transfer events, and contract
-      interactions. The HEGIC token contract address on Arbitrum is
-      0x431402e8b9de9aa016c743880e04e517074d8cec.
-    image: https://arbiscan.io/favicon.ico
-    humanURL: https://arbiscan.io/token/0x431402e8b9de9aa016c743880e04e517074d8cec
-    baseURL: https://api.arbiscan.io
-    tags:
-      - Token
-      - ERC-20
-      - Arbitrum
-      - On-Chain Data
-      - Transfer Events
-    properties:
-      - type: Documentation
-        url: https://docs.arbiscan.io
-    contact:
-      - FN: Arbiscan Support
-        url: https://arbiscan.io
-  - name: Hegic Options Subgraph API
-    description: >
-      GraphQL API powered by The Graph Protocol for querying Hegic options
-      positions, historical trades, liquidity pool states, and protocol events
-      on Ethereum. Enables developers to query open and closed option positions,
-      premiums paid, expiry data, and exercise history using GraphQL queries.
-    image: https://thegraph.com/favicon.ico
-    humanURL: https://thegraph.com/explorer?search=hegic
-    baseURL: https://api.thegraph.com
-    tags:
-      - GraphQL
-      - Options Positions
-      - Subgraph
-      - The Graph
-      - Historical Data
-    properties:
-      - type: Documentation
-        url: https://thegraph.com/docs/en/subgraphs/querying/introduction/
-    contact:
-      - FN: The Graph Foundation
-        url: https://thegraph.com
-  - name: Hegic Smart Contracts (Arbitrum)
-    description: >
-      Hegic's core options protocol is implemented as smart contracts on
-      Arbitrum One. Developers can interact directly with the contracts using
-      standard JSON-RPC calls, including querying option positions, strike
-      prices, liquidity pool balances, and hedge contract analytics. Key
-      contracts include the ETH and WBTC options pools, Stake and Cover
-      pool, and Chainlink price oracle integrations.
-    image: https://hegic.co/favicon.ico
-    humanURL: https://github.com/hegic/contracts
-    baseURL: https://arb1.arbitrum.io
-    tags:
-      - Smart Contracts
-      - JSON-RPC
-      - Options
-      - Liquidity Pool
-      - Strike Prices
-      - Hedge Contracts
-    properties:
-      - type: Documentation
-        url: https://github.com/hegic/contracts
-      - type: GettingStarted
-        url: https://github.com/jmonteer/hegic-resources
-    contact:
-      - FN: Hegic Protocol
-        url: https://hegic.co
-        X-twitter: https://twitter.com/HegicOptions
+- name: DefiLlama Hegic Protocol API
+  description: 'Public REST API provided by DefiLlama for querying Hegic protocol
+    metrics including TVL, fees, revenue, and options volume. Returns historical and
+    current data across Arbitrum and Ethereum deployments with no authentication required.
 
+    '
+  image: https://defillama.com/favicon.ico
+  humanURL: https://defillama.com/protocol/hegic
+  baseURL: https://api.llama.fi
+  tags:
+  - TVL
+  - Fees
+  - Revenue
+  - Options Volume
+  - Analytics
+  properties:
+  - type: Documentation
+    url: https://defillama.com/docs/api
+  - type: OpenAPI
+    url: https://api-docs.defillama.com
+  - url: graphql/hegic-graphql.md
+    type: GraphQL
+  contact:
+  - FN: DefiLlama Team
+    url: https://defillama.com
+- name: Arbiscan Token API
+  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum
+    One, including token supply, holder information, transfer events, and contract
+    interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec.
+
+    '
+  image: https://arbiscan.io/favicon.ico
+  humanURL: https://arbiscan.io/token/0x431402e8b9de9aa016c743880e04e517074d8cec
+  baseURL: https://api.arbiscan.io
+  tags:
+  - Token
+  - ERC-20
+  - Arbitrum
+  - On-Chain Data
+  - Transfer Events
+  properties:
+  - type: Documentation
+    url: https://docs.arbiscan.io
+  contact:
+  - FN: Arbiscan Support
+    url: https://arbiscan.io
+- name: Hegic Options Subgraph API
+  description: 'GraphQL API powered by The Graph Protocol for querying Hegic options
+    positions, historical trades, liquidity pool states, and protocol events on Ethereum.
+    Enables developers to query open and closed option positions, premiums paid, expiry
+    data, and exercise history using GraphQL queries.
+
+    '
+  image: https://thegraph.com/favicon.ico
+  humanURL: https://thegraph.com/explorer?search=hegic
+  baseURL: https://api.thegraph.com
+  tags:
+  - GraphQL
+  - Options Positions
+  - Subgraph
+  - The Graph
+  - Historical Data
+  properties:
+  - type: Documentation
+    url: https://thegraph.com/docs/en/subgraphs/querying/introduction/
+  contact:
+  - FN: The Graph Foundation
+    url: https://thegraph.com
+- name: Hegic Smart Contracts (Arbitrum)
+  description: 'Hegic''s core options protocol is implemented as smart contracts on
+    Arbitrum One. Developers can interact directly with the contracts using standard
+    JSON-RPC calls, including querying option positions, strike prices, liquidity
+    pool balances, and hedge contract analytics. Key contracts include the ETH and
+    WBTC options pools, Stake and Cover pool, and Chainlink price oracle integrations.
+
+    '
+  image: https://hegic.co/favicon.ico
+  humanURL: https://github.com/hegic/contracts
+  baseURL: https://arb1.arbitrum.io
+  tags:
+  - Smart Contracts
+  - JSON-RPC
+  - Options
+  - Liquidity Pool
+  - Strike Prices
+  - Hedge Contracts
+  properties:
+  - type: Documentation
+    url: https://github.com/hegic/contracts
+  - type: GettingStarted
+    url: https://github.com/jmonteer/hegic-resources
+  contact:
+  - FN: Hegic Protocol
+    url: https://hegic.co
+    X-twitter: https://twitter.com/HegicOptions
 common:
-  - type: Website
-    url: https://www.hegic.co/
-  - type: Application
-    url: https://www.hegic.co/app
-  - type: GitHubOrganization
-    url: https://github.com/hegic
-  - type: Analytics
-    url: https://dune.com/Juan_X/hegic-herge
-  - type: Forum
-    url: https://gov.hegic.co/
-  - type: Blog
-    url: https://medium.com/hegic
-  - type: Twitter
-    url: https://twitter.com/HegicOptions
-  - type: TermsOfService
-    url: https://www.hegic.co/
-  - type: Status
-    url: https://arbiscan.io/token/0x431402e8b9de9aa016c743880e04e517074d8cec
+- type: Website
+  url: https://www.hegic.co/
+- type: Application
+  url: https://www.hegic.co/app
+- type: GitHubOrganization
+  url: https://github.com/hegic
+- type: Analytics
+  url: https://dune.com/Juan_X/hegic-herge
+- type: Forum
+  url: https://gov.hegic.co/
+- type: Blog
+  url: https://medium.com/hegic
+- type: Twitter
+  url: https://twitter.com/HegicOptions
+- type: TermsOfService
+  url: https://www.hegic.co/
+- type: Status
+  url: https://arbiscan.io/token/0x431402e8b9de9aa016c743880e04e517074d8cec
 maintainers:
-  - FN: API Evangelist
-    url: https://apievangelist.com
-    email: kin@apievangelist.com
+- FN: API Evangelist
+  url: https://apievangelist.com
+  email: kin@apievangelist.com

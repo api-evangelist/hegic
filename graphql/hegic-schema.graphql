@@ -1,0 +1,123 @@
+# Hegic Options Protocol Subgraph Schema
+# Source: https://github.com/cvauclair/hegic-subgraph
+# Endpoint: https://api.thegraph.com/subgraphs/name/cvauclair/hegic
+
+type Provide @entity {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  account: String!
+  amount: BigInt!
+  numWriteTokens: BigInt!
+  pool: LiquidityPool!
+}
+
+type Withdraw @entity {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  account: String!
+  amount: BigInt!
+  numWriteTokens: BigInt!
+  pool: LiquidityPool!
+}
+
+type Profit @entity {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  amount: BigInt!
+  pool: LiquidityPool!
+  option: HegicOption!
+}
+
+type Loss @entity {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  amount: BigInt!
+  pool: LiquidityPool!
+  option: HegicOption!
+}
+
+type Claim @entity {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  amount: BigInt!
+  account: String!
+}
+
+type ImpliedVolatility @entity {
+  id: ID!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  impliedVolatility: BigInt!
+  pool: LiquidityPool!
+}
+
+type Asset @entity {
+  id: ID!
+  symbol: String!
+  name: String!
+  decimals: Int!
+}
+
+enum OptionState {
+  Inactive
+  Active
+  Exercised
+  Expired
+}
+
+enum OptionType {
+  Put
+  Call
+}
+
+type HegicOption @entity {
+  id: ID!
+  underlying: Asset!
+  creationBlock: BigInt!
+  creationTimestamp: BigInt!
+  holder: String!
+  premium: BigInt!
+  strike: BigInt!
+  amount: BigInt!
+  expiration: BigInt!
+  type: OptionType!
+  state: OptionState!
+  settlementFee: BigInt!
+  pool: LiquidityPool!
+}
+
+type LiquidityPool @entity {
+  id: ID!
+  underlying: Asset!
+  numOptions: BigInt!
+  numExpiredOptions: BigInt!
+  numExercisedOptions: BigInt!
+  options: [HegicOption!]! @derivedFrom(field: "pool")
+  numProvides: BigInt!
+  provides: [Provide!]! @derivedFrom(field: "pool")
+  latestProvide: Provide
+  numWithdraws: BigInt!
+  withdraws: [Withdraw!]! @derivedFrom(field: "pool")
+  latestWithdraw: Withdraw
+  liquidity: BigInt!
+  numProfits: BigInt!
+  profits: [Profit!]! @derivedFrom(field: "pool")
+  latestProfit: Profit
+  totalProfits: BigInt!
+  numLosses: BigInt!
+  losses: [Loss!]! @derivedFrom(field: "pool")
+  latestLoss: Loss
+  totalLosses: BigInt!
+  totalSettlementFees: BigInt!
+  totalFees: BigInt!
+  totalPutVolume: BigInt!
+  totalCallVolume: BigInt!
+  numImpliedVolatility: BigInt!
+  impliedVolatility: [ImpliedVolatility!]! @derivedFrom(field: "pool")
+  latestImpliedVolatility: ImpliedVolatility
+}
