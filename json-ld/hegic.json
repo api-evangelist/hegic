@@ -1,0 +1,145 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "defi": "https://ontology.defi.org/",
+    "hegic": "https://hegic.co/ontology/",
+    "tvl": "defi:totalValueLocked",
+    "openInterest": "defi:openInterest",
+    "premiumVolume": "defi:premiumVolume",
+    "notionalVolume": "defi:notionalVolume",
+    "optionPosition": "defi:optionPosition",
+    "strikePrice": "defi:strikePrice",
+    "expiry": "defi:expiry",
+    "liquidityPool": "defi:liquidityPool"
+  },
+  "@type": "WebAPI",
+  "@id": "https://hegic.co",
+  "name": "Hegic Protocol",
+  "description": "Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum, enabling users to trade ETH and WBTC call and put options with AMM mechanics.",
+  "url": "https://hegic.co",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://hegic.co/favicon.ico"
+  },
+  "sameAs": [
+    "https://github.com/hegic",
+    "https://twitter.com/HegicOptions",
+    "https://medium.com/hegic",
+    "https://defillama.com/protocol/hegic"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "description": "On-chain options trading for ETH and WBTC on Arbitrum",
+    "category": "DeFi Options Protocol"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Hegic",
+    "url": "https://hegic.co",
+    "sameAs": "https://github.com/hegic"
+  },
+  "applicationCategory": "DeFi",
+  "operatingSystem": "Arbitrum One (Ethereum L2)",
+  "availableChannel": [
+    {
+      "@type": "ServiceChannel",
+      "name": "DefiLlama API",
+      "description": "Public REST API for querying Hegic TVL, fees, revenue, and options volume",
+      "serviceUrl": "https://api.llama.fi/protocol/hegic",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "name": "Query Hegic TVL",
+        "target": "https://api.llama.fi/tvl/hegic"
+      }
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "Arbiscan Token API",
+      "description": "Block explorer API for HEGIC token data on Arbitrum One",
+      "serviceUrl": "https://api.arbiscan.io/api",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "name": "Query HEGIC Token",
+        "target": "https://arbiscan.io/token/0x431402e8b9de9aa016c743880e04e517074d8cec"
+      }
+    },
+    {
+      "@type": "ServiceChannel",
+      "name": "The Graph Subgraph",
+      "description": "GraphQL API for querying Hegic options positions and protocol events",
+      "serviceUrl": "https://thegraph.com/explorer?search=hegic"
+    }
+  ],
+  "hasAPI": [
+    {
+      "@type": "WebAPI",
+      "name": "DefiLlama Hegic Protocol API",
+      "description": "Public REST API for Hegic protocol metrics including TVL, fees, and options volume",
+      "documentation": "https://defillama.com/docs/api",
+      "url": "https://api.llama.fi",
+      "termsOfService": "https://defillama.com/",
+      "provider": {
+        "@type": "Organization",
+        "name": "DefiLlama",
+        "url": "https://defillama.com"
+      }
+    },
+    {
+      "@type": "WebAPI",
+      "name": "Arbiscan Token API",
+      "description": "Block explorer API for HEGIC ERC-20 token on Arbitrum One",
+      "documentation": "https://docs.arbiscan.io",
+      "url": "https://api.arbiscan.io",
+      "provider": {
+        "@type": "Organization",
+        "name": "Arbiscan",
+        "url": "https://arbiscan.io"
+      }
+    }
+  ],
+  "keywords": [
+    "DeFi",
+    "Options Trading",
+    "On-Chain",
+    "Arbitrum",
+    "Ethereum",
+    "Liquidity Pools",
+    "AMM",
+    "Derivatives",
+    "Web3",
+    "HEGIC",
+    "Options Protocol"
+  ],
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "blockchain",
+      "value": "Arbitrum One"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "tokenAddress",
+      "value": "0x431402e8b9de9aa016c743880e04e517074d8cec"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "tokenSymbol",
+      "value": "HEGIC"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "protocolType",
+      "value": "Options AMM"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "supportedAssets",
+      "value": "ETH, WBTC"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "settlementCurrency",
+      "value": "USDC"
+    }
+  ]
+}

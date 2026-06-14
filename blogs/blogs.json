@@ -1,0 +1,30 @@
+{
+  "blogs": [
+    {
+      "name": "Hegic Protocol Blog",
+      "description": "Official Hegic protocol blog on Medium covering protocol updates, new features, governance proposals, and educational content about on-chain options trading.",
+      "url": "https://medium.com/hegic",
+      "type": "Blog",
+      "rss": "https://medium.com/feed/hegic",
+      "format": "RSS",
+      "provider": {
+        "name": "Hegic",
+        "url": "https://hegic.co"
+      },
+      "tags": [
+        "DeFi",
+        "Options Trading",
+        "Arbitrum",
+        "Protocol Updates",
+        "Governance"
+      ],
+      "lastFetched": "2026-06-14",
+      "active": true
+    }
+  ],
+  "meta": {
+    "provider": "hegic",
+    "lastUpdated": "2026-06-14",
+    "totalBlogs": 1
+  }
+}

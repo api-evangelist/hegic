@@ -1,0 +1,625 @@
+openapi: 3.0.3
+info:
+  title: DefiLlama Hegic Protocol API
+  description: >
+    Public REST API provided by DefiLlama for querying Hegic protocol metrics
+    including TVL, fees, revenue, and options volume. Returns historical and
+    current data across Arbitrum and Ethereum deployments with no authentication
+    required. Hegic is an on-chain peer-to-pool options trading protocol deployed
+    on Arbitrum enabling ETH and WBTC call and put options trading.
+  version: 1.0.0
+  contact:
+    name: DefiLlama Team
+    url: https://defillama.com
+  license:
+    name: MIT
+    url: https://github.com/DefiLlama/defillama-server/blob/master/LICENSE
+externalDocs:
+  description: DefiLlama API Documentation
+  url: https://defillama.com/docs/api
+servers:
+  - url: https://api.llama.fi
+    description: DefiLlama Free API (no authentication required)
+tags:
+  - name: TVL
+    description: Total Value Locked data for Hegic and other protocols
+  - name: Options
+    description: Options DEX volume and analytics
+  - name: Fees
+    description: Protocol fees and revenue
+  - name: Prices
+    description: Token price data
+paths:
+  /protocols:
+    get:
+      summary: List all protocols with TVL
+      description: List all protocols on DefiLlama along with their TVL, including Hegic
+      operationId: listProtocols
+      tags:
+        - TVL
+      responses:
+        "200":
+          description: Array of protocol objects with TVL data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProtocolSummary"
+  /protocol/{protocol}:
+    get:
+      summary: Get protocol historical TVL
+      description: >
+        Get historical TVL of a protocol and breakdowns by token and chain.
+        Use protocol slug "hegic" to query Hegic-specific data.
+      operationId: getProtocol
+      tags:
+        - TVL
+      parameters:
+        - name: protocol
+          in: path
+          required: true
+          description: Protocol slug (e.g. "hegic")
+          schema:
+            type: string
+          example: hegic
+      responses:
+        "200":
+          description: Protocol historical TVL data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProtocolDetail"
+  /tvl/{protocol}:
+    get:
+      summary: Get current TVL of a protocol
+      description: >
+        Simplified endpoint to get the current TVL of a protocol.
+        Use protocol slug "hegic" to get current Hegic TVL.
+      operationId: getProtocolTvl
+      tags:
+        - TVL
+      parameters:
+        - name: protocol
+          in: path
+          required: true
+          description: Protocol slug (e.g. "hegic")
+          schema:
+            type: string
+          example: hegic
+      responses:
+        "200":
+          description: Current TVL as a number (USD)
+          content:
+            application/json:
+              schema:
+                type: number
+                description: Current TVL in USD
+  /v2/historicalChainTvl:
+    get:
+      summary: Get historical TVL for all chains
+      description: >
+        Get historical TVL (excludes liquid staking and double counted TVL)
+        of DeFi on all chains
+      operationId: getHistoricalChainTvl
+      tags:
+        - TVL
+      responses:
+        "200":
+          description: Array of date/TVL data points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TvlDataPoint"
+  /v2/historicalChainTvl/{chain}:
+    get:
+      summary: Get historical TVL for a specific chain
+      description: >
+        Get historical TVL (excludes liquid staking and double counted TVL)
+        of DeFi on a specific chain (e.g. Arbitrum where Hegic is deployed)
+      operationId: getHistoricalChainTvlByChain
+      tags:
+        - TVL
+      parameters:
+        - name: chain
+          in: path
+          required: true
+          description: Chain slug (e.g. "Arbitrum")
+          schema:
+            type: string
+          example: Arbitrum
+      responses:
+        "200":
+          description: Array of date/TVL data points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TvlDataPoint"
+  /v2/chains:
+    get:
+      summary: Get current TVL of all chains
+      description: Get current TVL of all chains including Arbitrum where Hegic operates
+      operationId: getChains
+      tags:
+        - TVL
+      responses:
+        "200":
+          description: Array of chain TVL objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ChainTvl"
+  /overview/options:
+    get:
+      summary: List all options DEXs with volume summaries
+      description: >
+        List all options DEXs along with summaries of their volumes and dataType
+        history data. Hegic appears in this list as an on-chain options protocol.
+      operationId: listOptionsDexs
+      tags:
+        - Options
+      parameters:
+        - name: excludeTotalDataChart
+          in: query
+          required: true
+          description: Set to true to exclude aggregated chart from response
+          schema:
+            type: boolean
+          example: true
+        - name: excludeTotalDataChartBreakdown
+          in: query
+          required: true
+          description: Set to true to exclude broken down chart from response
+          schema:
+            type: boolean
+          example: true
+        - name: dataType
+          in: query
+          required: false
+          description: Desired data type (dailyPremiumVolume or dailyNotionalVolume)
+          schema:
+            type: string
+            enum:
+              - dailyPremiumVolume
+              - dailyNotionalVolume
+            default: dailyNotionalVolume
+          example: dailyPremiumVolume
+      responses:
+        "200":
+          description: Options DEX volume data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DexOverview"
+  /overview/options/{chain}:
+    get:
+      summary: List options DEXs by chain
+      description: >
+        List all options DEXs along with summaries of their volumes and dataType
+        history data filtering by chain. Use "Arbitrum" to see Hegic-specific data.
+      operationId: listOptionsDexsByChain
+      tags:
+        - Options
+      parameters:
+        - name: chain
+          in: path
+          required: true
+          description: Chain name (e.g. "Arbitrum")
+          schema:
+            type: string
+          example: Arbitrum
+        - name: excludeTotalDataChart
+          in: query
+          required: true
+          description: Set to true to exclude aggregated chart from response
+          schema:
+            type: boolean
+          example: true
+        - name: excludeTotalDataChartBreakdown
+          in: query
+          required: true
+          description: Set to true to exclude broken down chart from response
+          schema:
+            type: boolean
+          example: true
+        - name: dataType
+          in: query
+          required: false
+          description: Desired data type
+          schema:
+            type: string
+            enum:
+              - dailyPremiumVolume
+              - dailyNotionalVolume
+            default: dailyNotionalVolume
+      responses:
+        "200":
+          description: Options DEX volume data filtered by chain
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DexOverview"
+  /summary/options/{protocol}:
+    get:
+      summary: Get options DEX volume summary
+      description: >
+        Get summary of options DEX volume with historical data for a specific
+        protocol. Use protocol slug "hegic" to get Hegic-specific options data.
+      operationId: getOptionsSummary
+      tags:
+        - Options
+      parameters:
+        - name: protocol
+          in: path
+          required: true
+          description: Protocol slug (e.g. "hegic")
+          schema:
+            type: string
+          example: hegic
+        - name: dataType
+          in: query
+          required: false
+          description: Desired data type
+          schema:
+            type: string
+            enum:
+              - dailyPremiumVolume
+              - dailyNotionalVolume
+            default: dailyNotionalVolume
+      responses:
+        "200":
+          description: Options volume summary with historical data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProtocolVolumeSummary"
+  /overview/fees:
+    get:
+      summary: List all protocols with fees and revenue
+      description: >
+        List all protocols along with summaries of their fees and revenue and
+        dataType history data. Includes Hegic protocol fee and revenue data.
+      operationId: listFees
+      tags:
+        - Fees
+      parameters:
+        - name: excludeTotalDataChart
+          in: query
+          required: true
+          description: Set to true to exclude aggregated chart from response
+          schema:
+            type: boolean
+          example: true
+        - name: excludeTotalDataChartBreakdown
+          in: query
+          required: true
+          description: Set to true to exclude broken down chart from response
+          schema:
+            type: boolean
+          example: true
+        - name: dataType
+          in: query
+          required: false
+          description: Desired data type
+          schema:
+            type: string
+            enum:
+              - dailyFees
+              - dailyRevenue
+              - dailyHoldersRevenue
+            default: dailyFees
+      responses:
+        "200":
+          description: Protocol fee and revenue data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeesOverview"
+  /summary/fees/{protocol}:
+    get:
+      summary: Get protocol fees and revenue summary
+      description: >
+        Get summary of protocol fees and revenue with historical data.
+        Use protocol slug "hegic" to get Hegic-specific fee data.
+      operationId: getFeesSummary
+      tags:
+        - Fees
+      parameters:
+        - name: protocol
+          in: path
+          required: true
+          description: Protocol slug (e.g. "hegic")
+          schema:
+            type: string
+          example: hegic
+        - name: dataType
+          in: query
+          required: false
+          description: Desired data type
+          schema:
+            type: string
+            enum:
+              - dailyFees
+              - dailyRevenue
+              - dailyHoldersRevenue
+            default: dailyFees
+      responses:
+        "200":
+          description: Protocol fees and revenue summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeesSummary"
+  /prices/current/{coins}:
+    get:
+      summary: Get current token prices
+      description: >
+        Get current prices of tokens by contract address. Can be used to get
+        current HEGIC token price on Arbitrum
+        (arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec).
+      operationId: getCurrentPrices
+      tags:
+        - Prices
+      parameters:
+        - name: coins
+          in: path
+          required: true
+          description: >
+            Comma-separated tokens defined as {chain}:{address} or
+            coingecko:{id}
+          schema:
+            type: string
+          example: "arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec"
+        - name: searchWidth
+          in: query
+          required: false
+          description: Time range on either side to find price data (defaults to 6 hours)
+          schema:
+            type: string
+          example: "4h"
+      responses:
+        "200":
+          description: Current token prices
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoinPrices"
+  /prices/historical/{timestamp}/{coins}:
+    get:
+      summary: Get historical token prices
+      description: >
+        Get historical prices of tokens by contract address at a specific
+        UNIX timestamp.
+      operationId: getHistoricalPrices
+      tags:
+        - Prices
+      parameters:
+        - name: timestamp
+          in: path
+          required: true
+          description: UNIX timestamp of time when you want historical prices
+          schema:
+            type: number
+          example: 1648680149
+        - name: coins
+          in: path
+          required: true
+          description: >
+            Comma-separated tokens defined as {chain}:{address}
+          schema:
+            type: string
+          example: "arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec"
+        - name: searchWidth
+          in: query
+          required: false
+          description: Time range on either side to find price data
+          schema:
+            type: string
+          example: "4h"
+      responses:
+        "200":
+          description: Historical token prices
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoinPrices"
+components:
+  schemas:
+    ProtocolSummary:
+      type: object
+      description: Summary of a DeFi protocol including Hegic
+      properties:
+        id:
+          type: string
+          description: Protocol identifier
+        name:
+          type: string
+          description: Protocol name
+          example: Hegic
+        symbol:
+          type: string
+          description: Token symbol
+          example: HEGIC
+        category:
+          type: string
+          description: Protocol category
+          example: Options
+        chains:
+          type: array
+          items:
+            type: string
+          description: Chains where protocol is deployed
+          example: ["Arbitrum"]
+        tvl:
+          type: number
+          description: Current total value locked in USD
+        change_1d:
+          type: number
+          description: 1-day TVL change percentage
+        change_7d:
+          type: number
+          description: 7-day TVL change percentage
+    ProtocolDetail:
+      type: object
+      description: Detailed protocol data including historical TVL
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        category:
+          type: string
+        chains:
+          type: array
+          items:
+            type: string
+        currentChainTvls:
+          type: object
+          additionalProperties:
+            type: number
+          description: Current TVL per chain
+        chainTvls:
+          type: object
+          description: Historical TVL broken down by chain
+    TvlDataPoint:
+      type: object
+      properties:
+        date:
+          type: integer
+          description: UNIX timestamp
+        tvl:
+          type: number
+          description: TVL in USD at this date
+    ChainTvl:
+      type: object
+      properties:
+        gecko_id:
+          type: string
+        tvl:
+          type: number
+        tokenSymbol:
+          type: string
+        cmcId:
+          type: string
+        name:
+          type: string
+        chainId:
+          type: integer
+    DexOverview:
+      type: object
+      properties:
+        protocols:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              total24h:
+                type: number
+              total7d:
+                type: number
+              totalAllTime:
+                type: number
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        allChains:
+          type: array
+          items:
+            type: string
+    ProtocolVolumeSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        total24h:
+          type: number
+          description: Volume in last 24 hours
+        totalAllTime:
+          type: number
+          description: All-time volume
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+        chains:
+          type: array
+          items:
+            type: string
+    FeesOverview:
+      type: object
+      properties:
+        protocols:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              total24h:
+                type: number
+              total7d:
+                type: number
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+    FeesSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        category:
+          type: string
+        total24h:
+          type: number
+          description: Fees in last 24 hours (USD)
+        change_1d:
+          type: number
+          description: 1-day change percentage
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+    CoinPrices:
+      type: object
+      properties:
+        coins:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              decimals:
+                type: integer
+              price:
+                type: number
+              symbol:
+                type: string
+              timestamp:
+                type: integer
