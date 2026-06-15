@@ -26,5 +26,14 @@
     "provider": "hegic",
     "lastUpdated": "2026-06-14",
     "totalBlogs": 1
-  }
+  },
+  "repo": "hegic",
+  "feeds": [
+    {
+      "source": "https://gov.hegic.co/",
+      "error": "URLError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
