@@ -18,22 +18,29 @@
         "Protocol Updates",
         "Governance"
       ],
-      "lastFetched": "2026-06-14",
+      "lastFetched": "2026-06-21",
       "active": true
     }
   ],
   "meta": {
     "provider": "hegic",
-    "lastUpdated": "2026-06-14",
+    "lastUpdated": "2026-06-21",
     "totalBlogs": 1
   },
   "repo": "hegic",
   "feeds": [
+    {
+      "source": "https://medium.com/feed/hegic",
+      "feed_url": "https://medium.com/feed/hegic",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
     {
       "source": "https://gov.hegic.co/",
       "error": "URLError"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z"
 }
