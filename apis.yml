@@ -120,6 +120,10 @@ apis:
     url: https://hegic.co
     X-twitter: https://twitter.com/HegicOptions
 common:
+- type: DomainSecurity
+  url: security/hegic-domain-security.yml
+- type: Authentication
+  url: authentication/hegic-authentication.yml
 - type: Website
   url: https://www.hegic.co/
 - type: Application
