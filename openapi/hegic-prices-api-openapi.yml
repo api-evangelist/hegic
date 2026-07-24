@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: Arbiscan Token API - HEGIC Token Accounts Prices API
+  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Arbiscan Support
+    url: https://arbiscan.io
+  license:
+    name: Arbiscan Terms of Service
+    url: https://arbiscan.io/terms
+servers:
+- url: https://api.arbiscan.io/api
+  description: Arbiscan API for Arbitrum One
+security:
+- ApiKeyQuery: []
+tags:
+- name: Prices
+  description: Token price data
+paths:
+  /prices/current/{coins}:
+    get:
+      summary: Get current token prices
+      description: 'Get current prices of tokens by contract address. Can be used to get current HEGIC token price on Arbitrum (arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec).
+
+        '
+      operationId: getCurrentPrices
+      tags:
+      - Prices
+      parameters:
+      - name: coins
+        in: path
+        required: true
+        description: 'Comma-separated tokens defined as {chain}:{address} or coingecko:{id}
+
+          '
+        schema:
+          type: string
+        example: arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec
+      - name: searchWidth
+        in: query
+        required: false
+        description: Time range on either side to find price data (defaults to 6 hours)
+        schema:
+          type: string
+        example: 4h
+      responses:
+        '200':
+          description: Current token prices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoinPrices'
+  /prices/historical/{timestamp}/{coins}:
+    get:
+      summary: Get historical token prices
+      description: 'Get historical prices of tokens by contract address at a specific UNIX timestamp.
+
+        '
+      operationId: getHistoricalPrices
+      tags:
+      - Prices
+      parameters:
+      - name: timestamp
+        in: path
+        required: true
+        description: UNIX timestamp of time when you want historical prices
+        schema:
+          type: number
+        example: 1648680149
+      - name: coins
+        in: path
+        required: true
+        description: 'Comma-separated tokens defined as {chain}:{address}
+
+          '
+        schema:
+          type: string
+        example: arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec
+      - name: searchWidth
+        in: query
+        required: false
+        description: Time range on either side to find price data
+        schema:
+          type: string
+        example: 4h
+      responses:
+        '200':
+          description: Historical token prices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoinPrices'
+components:
+  schemas:
+    CoinPrices:
+      type: object
+      properties:
+        coins:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              decimals:
+                type: integer
+              price:
+                type: number
+              symbol:
+                type: string
+              timestamp:
+                type: integer
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  description: Arbiscan API Documentation
+  url: https://docs.arbiscan.io

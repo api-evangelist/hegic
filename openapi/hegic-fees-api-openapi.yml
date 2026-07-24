@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Arbiscan Token API - HEGIC Token Accounts Fees API
+  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Arbiscan Support
+    url: https://arbiscan.io
+  license:
+    name: Arbiscan Terms of Service
+    url: https://arbiscan.io/terms
+servers:
+- url: https://api.arbiscan.io/api
+  description: Arbiscan API for Arbitrum One
+security:
+- ApiKeyQuery: []
+tags:
+- name: Fees
+  description: Protocol fees and revenue
+paths:
+  /overview/fees:
+    get:
+      summary: List all protocols with fees and revenue
+      description: 'List all protocols along with summaries of their fees and revenue and dataType history data. Includes Hegic protocol fee and revenue data.
+
+        '
+      operationId: listFees
+      tags:
+      - Fees
+      parameters:
+      - name: excludeTotalDataChart
+        in: query
+        required: true
+        description: Set to true to exclude aggregated chart from response
+        schema:
+          type: boolean
+        example: true
+      - name: excludeTotalDataChartBreakdown
+        in: query
+        required: true
+        description: Set to true to exclude broken down chart from response
+        schema:
+          type: boolean
+        example: true
+      - name: dataType
+        in: query
+        required: false
+        description: Desired data type
+        schema:
+          type: string
+          enum:
+          - dailyFees
+          - dailyRevenue
+          - dailyHoldersRevenue
+          default: dailyFees
+      responses:
+        '200':
+          description: Protocol fee and revenue data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeesOverview'
+  /summary/fees/{protocol}:
+    get:
+      summary: Get protocol fees and revenue summary
+      description: 'Get summary of protocol fees and revenue with historical data. Use protocol slug "hegic" to get Hegic-specific fee data.
+
+        '
+      operationId: getFeesSummary
+      tags:
+      - Fees
+      parameters:
+      - name: protocol
+        in: path
+        required: true
+        description: Protocol slug (e.g. "hegic")
+        schema:
+          type: string
+        example: hegic
+      - name: dataType
+        in: query
+        required: false
+        description: Desired data type
+        schema:
+          type: string
+          enum:
+          - dailyFees
+          - dailyRevenue
+          - dailyHoldersRevenue
+          default: dailyFees
+      responses:
+        '200':
+          description: Protocol fees and revenue summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeesSummary'
+components:
+  schemas:
+    FeesOverview:
+      type: object
+      properties:
+        protocols:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              total24h:
+                type: number
+              total7d:
+                type: number
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+    FeesSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        category:
+          type: string
+        total24h:
+          type: number
+          description: Fees in last 24 hours (USD)
+        change_1d:
+          type: number
+          description: 1-day change percentage
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  description: Arbiscan API Documentation
+  url: https://docs.arbiscan.io

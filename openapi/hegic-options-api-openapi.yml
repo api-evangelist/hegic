@@ -1,0 +1,203 @@
+openapi: 3.0.3
+info:
+  title: Arbiscan Token API - HEGIC Token Accounts Options API
+  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Arbiscan Support
+    url: https://arbiscan.io
+  license:
+    name: Arbiscan Terms of Service
+    url: https://arbiscan.io/terms
+servers:
+- url: https://api.arbiscan.io/api
+  description: Arbiscan API for Arbitrum One
+security:
+- ApiKeyQuery: []
+tags:
+- name: Options
+  description: Options DEX volume and analytics
+paths:
+  /overview/options:
+    get:
+      summary: List all options DEXs with volume summaries
+      description: 'List all options DEXs along with summaries of their volumes and dataType history data. Hegic appears in this list as an on-chain options protocol.
+
+        '
+      operationId: listOptionsDexs
+      tags:
+      - Options
+      parameters:
+      - name: excludeTotalDataChart
+        in: query
+        required: true
+        description: Set to true to exclude aggregated chart from response
+        schema:
+          type: boolean
+        example: true
+      - name: excludeTotalDataChartBreakdown
+        in: query
+        required: true
+        description: Set to true to exclude broken down chart from response
+        schema:
+          type: boolean
+        example: true
+      - name: dataType
+        in: query
+        required: false
+        description: Desired data type (dailyPremiumVolume or dailyNotionalVolume)
+        schema:
+          type: string
+          enum:
+          - dailyPremiumVolume
+          - dailyNotionalVolume
+          default: dailyNotionalVolume
+        example: dailyPremiumVolume
+      responses:
+        '200':
+          description: Options DEX volume data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DexOverview'
+  /overview/options/{chain}:
+    get:
+      summary: List options DEXs by chain
+      description: 'List all options DEXs along with summaries of their volumes and dataType history data filtering by chain. Use "Arbitrum" to see Hegic-specific data.
+
+        '
+      operationId: listOptionsDexsByChain
+      tags:
+      - Options
+      parameters:
+      - name: chain
+        in: path
+        required: true
+        description: Chain name (e.g. "Arbitrum")
+        schema:
+          type: string
+        example: Arbitrum
+      - name: excludeTotalDataChart
+        in: query
+        required: true
+        description: Set to true to exclude aggregated chart from response
+        schema:
+          type: boolean
+        example: true
+      - name: excludeTotalDataChartBreakdown
+        in: query
+        required: true
+        description: Set to true to exclude broken down chart from response
+        schema:
+          type: boolean
+        example: true
+      - name: dataType
+        in: query
+        required: false
+        description: Desired data type
+        schema:
+          type: string
+          enum:
+          - dailyPremiumVolume
+          - dailyNotionalVolume
+          default: dailyNotionalVolume
+      responses:
+        '200':
+          description: Options DEX volume data filtered by chain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DexOverview'
+  /summary/options/{protocol}:
+    get:
+      summary: Get options DEX volume summary
+      description: 'Get summary of options DEX volume with historical data for a specific protocol. Use protocol slug "hegic" to get Hegic-specific options data.
+
+        '
+      operationId: getOptionsSummary
+      tags:
+      - Options
+      parameters:
+      - name: protocol
+        in: path
+        required: true
+        description: Protocol slug (e.g. "hegic")
+        schema:
+          type: string
+        example: hegic
+      - name: dataType
+        in: query
+        required: false
+        description: Desired data type
+        schema:
+          type: string
+          enum:
+          - dailyPremiumVolume
+          - dailyNotionalVolume
+          default: dailyNotionalVolume
+      responses:
+        '200':
+          description: Options volume summary with historical data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolVolumeSummary'
+components:
+  schemas:
+    DexOverview:
+      type: object
+      properties:
+        protocols:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              total24h:
+                type: number
+              total7d:
+                type: number
+              totalAllTime:
+                type: number
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        allChains:
+          type: array
+          items:
+            type: string
+    ProtocolVolumeSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        total24h:
+          type: number
+          description: Volume in last 24 hours
+        totalAllTime:
+          type: number
+          description: All-time volume
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+        chains:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  description: Arbiscan API Documentation
+  url: https://docs.arbiscan.io

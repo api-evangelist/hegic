@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+  title: Arbiscan Token API - HEGIC Token Accounts TVL API
+  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Arbiscan Support
+    url: https://arbiscan.io
+  license:
+    name: Arbiscan Terms of Service
+    url: https://arbiscan.io/terms
+servers:
+- url: https://api.arbiscan.io/api
+  description: Arbiscan API for Arbitrum One
+security:
+- ApiKeyQuery: []
+tags:
+- name: TVL
+  description: Total Value Locked data for Hegic and other protocols
+paths:
+  /protocols:
+    get:
+      summary: List all protocols with TVL
+      description: List all protocols on DefiLlama along with their TVL, including Hegic
+      operationId: listProtocols
+      tags:
+      - TVL
+      responses:
+        '200':
+          description: Array of protocol objects with TVL data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProtocolSummary'
+  /protocol/{protocol}:
+    get:
+      summary: Get protocol historical TVL
+      description: 'Get historical TVL of a protocol and breakdowns by token and chain. Use protocol slug "hegic" to query Hegic-specific data.
+
+        '
+      operationId: getProtocol
+      tags:
+      - TVL
+      parameters:
+      - name: protocol
+        in: path
+        required: true
+        description: Protocol slug (e.g. "hegic")
+        schema:
+          type: string
+        example: hegic
+      responses:
+        '200':
+          description: Protocol historical TVL data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolDetail'
+  /tvl/{protocol}:
+    get:
+      summary: Get current TVL of a protocol
+      description: 'Simplified endpoint to get the current TVL of a protocol. Use protocol slug "hegic" to get current Hegic TVL.
+
+        '
+      operationId: getProtocolTvl
+      tags:
+      - TVL
+      parameters:
+      - name: protocol
+        in: path
+        required: true
+        description: Protocol slug (e.g. "hegic")
+        schema:
+          type: string
+        example: hegic
+      responses:
+        '200':
+          description: Current TVL as a number (USD)
+          content:
+            application/json:
+              schema:
+                type: number
+                description: Current TVL in USD
+  /v2/historicalChainTvl:
+    get:
+      summary: Get historical TVL for all chains
+      description: 'Get historical TVL (excludes liquid staking and double counted TVL) of DeFi on all chains
+
+        '
+      operationId: getHistoricalChainTvl
+      tags:
+      - TVL
+      responses:
+        '200':
+          description: Array of date/TVL data points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TvlDataPoint'
+  /v2/historicalChainTvl/{chain}:
+    get:
+      summary: Get historical TVL for a specific chain
+      description: 'Get historical TVL (excludes liquid staking and double counted TVL) of DeFi on a specific chain (e.g. Arbitrum where Hegic is deployed)
+
+        '
+      operationId: getHistoricalChainTvlByChain
+      tags:
+      - TVL
+      parameters:
+      - name: chain
+        in: path
+        required: true
+        description: Chain slug (e.g. "Arbitrum")
+        schema:
+          type: string
+        example: Arbitrum
+      responses:
+        '200':
+          description: Array of date/TVL data points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TvlDataPoint'
+  /v2/chains:
+    get:
+      summary: Get current TVL of all chains
+      description: Get current TVL of all chains including Arbitrum where Hegic operates
+      operationId: getChains
+      tags:
+      - TVL
+      responses:
+        '200':
+          description: Array of chain TVL objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChainTvl'
+components:
+  schemas:
+    ChainTvl:
+      type: object
+      properties:
+        gecko_id:
+          type: string
+        tvl:
+          type: number
+        tokenSymbol:
+          type: string
+        cmcId:
+          type: string
+        name:
+          type: string
+        chainId:
+          type: integer
+    ProtocolDetail:
+      type: object
+      description: Detailed protocol data including historical TVL
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        category:
+          type: string
+        chains:
+          type: array
+          items:
+            type: string
+        currentChainTvls:
+          type: object
+          additionalProperties:
+            type: number
+          description: Current TVL per chain
+        chainTvls:
+          type: object
+          description: Historical TVL broken down by chain
+    ProtocolSummary:
+      type: object
+      description: Summary of a DeFi protocol including Hegic
+      properties:
+        id:
+          type: string
+          description: Protocol identifier
+        name:
+          type: string
+          description: Protocol name
+          example: Hegic
+        symbol:
+          type: string
+          description: Token symbol
+          example: HEGIC
+        category:
+          type: string
+          description: Protocol category
+          example: Options
+        chains:
+          type: array
+          items:
+            type: string
+          description: Chains where protocol is deployed
+          example:
+          - Arbitrum
+        tvl:
+          type: number
+          description: Current total value locked in USD
+        change_1d:
+          type: number
+          description: 1-day TVL change percentage
+        change_7d:
+          type: number
+          description: 7-day TVL change percentage
+    TvlDataPoint:
+      type: object
+      properties:
+        date:
+          type: integer
+          description: UNIX timestamp
+        tvl:
+          type: number
+          description: TVL in USD at this date
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  description: Arbiscan API Documentation
+  url: https://docs.arbiscan.io

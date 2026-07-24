@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Arbiscan Token API - HEGIC Token Accounts API
+  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Arbiscan Support
+    url: https://arbiscan.io
+  license:
+    name: Arbiscan Terms of Service
+    url: https://arbiscan.io/terms
+servers:
+- url: https://api.arbiscan.io/api
+  description: Arbiscan API for Arbitrum One
+security:
+- ApiKeyQuery: []
+tags:
+- name: Accounts
+  description: Account and holder information
+paths:
+  /token-balance:
+    get:
+      summary: Get ERC-20 token account balance
+      description: 'Returns the ERC-20 token balance of a specific address for the HEGIC token contract on Arbitrum One.
+
+        '
+      operationId: getTokenBalance
+      tags:
+      - Accounts
+      parameters:
+      - name: module
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - account
+        example: account
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - tokenbalance
+        example: tokenbalance
+      - name: contractaddress
+        in: query
+        required: true
+        description: HEGIC token contract address on Arbitrum
+        schema:
+          type: string
+        example: '0x431402e8b9de9aa016c743880e04e517074d8cec'
+      - name: address
+        in: query
+        required: true
+        description: Wallet address to query
+        schema:
+          type: string
+        example: '0x000000000000000000000000000000000000dead'
+      - name: tag
+        in: query
+        required: false
+        description: Block tag (latest or a specific block number)
+        schema:
+          type: string
+          default: latest
+        example: latest
+      - name: apikey
+        in: query
+        required: true
+        description: Your Arbiscan API key
+        schema:
+          type: string
+        example: YourApiKeyToken
+      responses:
+        '200':
+          description: Token balance response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: 1 for success, 0 for error
+          example: '1'
+        message:
+          type: string
+          description: Response message
+          example: OK
+        result:
+          description: Response payload (varies by endpoint)
+  securitySchemes:
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+externalDocs:
+  description: Arbiscan API Documentation
+  url: https://docs.arbiscan.io
