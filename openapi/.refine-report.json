@@ -1,0 +1,26 @@
+{
+  "provider": "hegic",
+  "sources": [
+    "hegic-accounts-api-openapi.yml",
+    "hegic-contracts-api-openapi.yml",
+    "hegic-fees-api-openapi.yml",
+    "hegic-options-api-openapi.yml",
+    "hegic-prices-api-openapi.yml",
+    "hegic-tokens-api-openapi.yml",
+    "hegic-tvl-api-openapi.yml"
+  ],
+  "outputs": [
+    "hegic-accounts-api-openapi.yml",
+    "hegic-contracts-api-openapi.yml",
+    "hegic-fees-api-openapi.yml",
+    "hegic-options-api-openapi.yml",
+    "hegic-prices-api-openapi.yml",
+    "hegic-tokens-api-openapi.yml",
+    "hegic-tvl-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
