@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts Tokens API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ERC-20 token supply",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/",
+            "params": [
+              {
+                "name": "module",
+                "value": "stats",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "tokensupply",
+                "type": "query"
+              },
+              {
+                "name": "contractaddress",
+                "value": "0x431402e8b9de9aa016c743880e04e517074d8cec",
+                "type": "query",
+                "description": "HEGIC token contract address on Arbitrum"
+              },
+              {
+                "name": "apikey",
+                "value": "YourApiKeyToken",
+                "type": "query",
+                "description": "Your Arbiscan API key"
+              }
+            ]
+          },
+          "docs": "Returns the total supply of ERC-20 tokens for the HEGIC token contract on Arbitrum One.\n"
+        },
+        {
+          "info": {
+            "name": "Get ERC-20 token transfer events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/token-transfers",
+            "params": [
+              {
+                "name": "module",
+                "value": "account",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "tokentx",
+                "type": "query"
+              },
+              {
+                "name": "contractaddress",
+                "value": "0x431402e8b9de9aa016c743880e04e517074d8cec",
+                "type": "query",
+                "description": "HEGIC token contract address on Arbitrum"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific wallet address"
+              },
+              {
+                "name": "startblock",
+                "value": "0",
+                "type": "query",
+                "description": "Start block number"
+              },
+              {
+                "name": "endblock",
+                "value": "99999999",
+                "type": "query",
+                "description": "End block number"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 10000)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              },
+              {
+                "name": "apikey",
+                "value": "YourApiKeyToken",
+                "type": "query",
+                "description": "Your Arbiscan API key"
+              }
+            ]
+          },
+          "docs": "Returns ERC-20 token transfer events for the HEGIC token contract on Arbitrum One, optionally filtered by address.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

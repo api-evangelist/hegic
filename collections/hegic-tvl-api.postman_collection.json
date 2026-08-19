@@ -1,0 +1,559 @@
+{
+  "item": [
+    {
+      "id": "aaff4466-cc4a-4975-9a9a-eaa84cfab6fd",
+      "name": "TVL",
+      "description": {
+        "content": "Total Value Locked data for Hegic and other protocols",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9edd7055-d7a0-4147-9281-e3b46cbb8897",
+          "name": "List all protocols with TVL",
+          "request": {
+            "name": "List all protocols with TVL",
+            "description": {
+              "content": "List all protocols on DefiLlama along with their TVL, including Hegic",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protocols"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "988ab14c-0aa0-4a79-9cb4-5f6cf095477f",
+              "name": "Array of protocol objects with TVL data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocols"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"Hegic\",\n    \"symbol\": \"HEGIC\",\n    \"category\": \"Options\",\n    \"chains\": [\n      \"Arbitrum\"\n    ],\n    \"tvl\": 3236.9141680406633,\n    \"change_1d\": 5717.626866351718,\n    \"change_7d\": 7532.647242110823\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"Hegic\",\n    \"symbol\": \"HEGIC\",\n    \"category\": \"Options\",\n    \"chains\": [\n      \"Arbitrum\"\n    ],\n    \"tvl\": 9717.75178613988,\n    \"change_1d\": 7164.849225928114,\n    \"change_7d\": 1716.053289625119\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16f02d4b-b199-4503-9497-d6d0e2397a20",
+          "name": "Get protocol historical TVL",
+          "request": {
+            "name": "Get protocol historical TVL",
+            "description": {
+              "content": "Get historical TVL of a protocol and breakdowns by token and chain. Use protocol slug \"hegic\" to query Hegic-specific data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "protocol",
+                ":protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "protocol",
+                  "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d2f4f9b-5210-404d-9ca1-639440043fd6",
+              "name": "Protocol historical TVL data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "protocol",
+                    ":protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "protocol",
+                      "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"symbol\": \"string\",\n  \"category\": \"string\",\n  \"chains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"currentChainTvls\": {\n    \"key_0\": 8093.422564416599\n  },\n  \"chainTvls\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "913f3f89-396a-4ec9-b732-81c6f3715be0",
+          "name": "Get current TVL of a protocol",
+          "request": {
+            "name": "Get current TVL of a protocol",
+            "description": {
+              "content": "Simplified endpoint to get the current TVL of a protocol. Use protocol slug \"hegic\" to get current Hegic TVL.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tvl",
+                ":protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "protocol",
+                  "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae2b85ab-f80e-4c72-8607-47b766ef31fa",
+              "name": "Current TVL as a number (USD)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tvl",
+                    ":protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "protocol",
+                      "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "6096.287029173858",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93692d76-c8e6-4049-92d9-ad0888cc363d",
+          "name": "Get historical TVL for all chains",
+          "request": {
+            "name": "Get historical TVL for all chains",
+            "description": {
+              "content": "Get historical TVL (excludes liquid staking and double counted TVL) of DeFi on all chains\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "historicalChainTvl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fe06a71-e0bd-43ba-8826-3340dc37b47a",
+              "name": "Array of date/TVL data points",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "historicalChainTvl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": 83,\n    \"tvl\": 8845.889453991647\n  },\n  {\n    \"date\": 4566,\n    \"tvl\": 16.10862220938314\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db3106c1-9e29-4783-99b9-bd5931332417",
+          "name": "Get historical TVL for a specific chain",
+          "request": {
+            "name": "Get historical TVL for a specific chain",
+            "description": {
+              "content": "Get historical TVL (excludes liquid staking and double counted TVL) of DeFi on a specific chain (e.g. Arbitrum where Hegic is deployed)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "historicalChainTvl",
+                ":chain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chain",
+                  "description": "(Required) Chain slug (e.g. \"Arbitrum\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d112b7ee-43cd-46e0-a56d-a61971802b6a",
+              "name": "Array of date/TVL data points",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "historicalChainTvl",
+                    ":chain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chain",
+                      "description": "(Required) Chain slug (e.g. \"Arbitrum\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": 83,\n    \"tvl\": 8845.889453991647\n  },\n  {\n    \"date\": 4566,\n    \"tvl\": 16.10862220938314\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b710673-aedb-4025-8ef7-1fc3841c5002",
+          "name": "Get current TVL of all chains",
+          "request": {
+            "name": "Get current TVL of all chains",
+            "description": {
+              "content": "Get current TVL of all chains including Arbitrum where Hegic operates",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "chains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7ccc67f-5b8a-4690-9973-1497548afdfb",
+              "name": "Array of chain TVL objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "chains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"gecko_id\": \"string\",\n    \"tvl\": 8628.979277480776,\n    \"tokenSymbol\": \"string\",\n    \"cmcId\": \"string\",\n    \"name\": \"string\",\n    \"chainId\": 6968\n  },\n  {\n    \"gecko_id\": \"string\",\n    \"tvl\": 7995.736578479495,\n    \"tokenSymbol\": \"string\",\n    \"cmcId\": \"string\",\n    \"name\": \"string\",\n    \"chainId\": 9220\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arbiscan.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1c373dc-835e-40b1-b6e3-5a3c59b918cb",
+    "name": "Arbiscan Token API - HEGIC Token Accounts TVL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.\n\n\nContact Support:\n Name: Arbiscan Support",
+      "type": "text/plain"
+    }
+  }
+}

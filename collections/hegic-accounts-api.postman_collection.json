@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "e9f8c0b1-cb39-4db9-a4e2-4f54977bc891",
+      "name": "Accounts",
+      "description": {
+        "content": "Account and holder information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b57a6361-cc76-4fe4-a5ba-856b7f40e44e",
+          "name": "Get ERC-20 token account balance",
+          "request": {
+            "name": "Get ERC-20 token account balance",
+            "description": {
+              "content": "Returns the ERC-20 token balance of a specific address for the HEGIC token contract on Arbitrum One.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token-balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "module",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) HEGIC token contract address on Arbitrum"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) Wallet address to query"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "latest",
+                  "description": "Block tag (latest or a specific block number)"
+                },
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "(Required) Your Arbiscan API key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09a1ea18-03d3-4163-a715-79bd01cbdcea",
+              "name": "Token balance response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token-balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "module",
+                      "value": "account"
+                    },
+                    {
+                      "key": "action",
+                      "value": "tokenbalance"
+                    },
+                    {
+                      "key": "contractaddress",
+                      "value": "0x431402e8b9de9aa016c743880e04e517074d8cec"
+                    },
+                    {
+                      "key": "address",
+                      "value": "0x000000000000000000000000000000000000dead"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "latest"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "YourApiKeyToken"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arbiscan.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c6775911-ca1a-410f-92d9-989c37cb837f",
+    "name": "Arbiscan Token API - HEGIC Token Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.\n\n\nContact Support:\n Name: Arbiscan Support",
+      "type": "text/plain"
+    }
+  }
+}

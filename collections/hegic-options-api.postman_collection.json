@@ -1,0 +1,389 @@
+{
+  "item": [
+    {
+      "id": "bbd9e4c0-8469-4594-9b1e-0e4b9e9c8c40",
+      "name": "Options",
+      "description": {
+        "content": "Options DEX volume and analytics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab1d7087-d6c7-40c0-89f4-dda65ed4bcc3",
+          "name": "List all options DEXs with volume summaries",
+          "request": {
+            "name": "List all options DEXs with volume summaries",
+            "description": {
+              "content": "List all options DEXs along with summaries of their volumes and dataType history data. Hegic appears in this list as an on-chain options protocol.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "overview",
+                "options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "excludeTotalDataChart",
+                  "value": "<boolean>",
+                  "description": "(Required) Set to true to exclude aggregated chart from response"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeTotalDataChartBreakdown",
+                  "value": "<boolean>",
+                  "description": "(Required) Set to true to exclude broken down chart from response"
+                },
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "dailyNotionalVolume",
+                  "description": "Desired data type (dailyPremiumVolume or dailyNotionalVolume)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63130c81-65d9-46ad-9abb-e17f47bf10c4",
+              "name": "Options DEX volume data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "overview",
+                    "options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "excludeTotalDataChart",
+                      "value": "true"
+                    },
+                    {
+                      "key": "excludeTotalDataChartBreakdown",
+                      "value": "true"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "dailyPremiumVolume"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"protocols\": [\n    {\n      \"name\": \"string\",\n      \"total24h\": 2378.448351745567,\n      \"total7d\": 7622.7775629299285,\n      \"totalAllTime\": 8347.91589530379\n    },\n    {\n      \"name\": \"string\",\n      \"total24h\": 7932.351472654025,\n      \"total7d\": 645.7299966798224,\n      \"totalAllTime\": 778.4326605265479\n    }\n  ],\n  \"totalDataChart\": [\n    [],\n    []\n  ],\n  \"allChains\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daa31422-c5e6-463e-a5d8-0266f018168a",
+          "name": "List options DEXs by chain",
+          "request": {
+            "name": "List options DEXs by chain",
+            "description": {
+              "content": "List all options DEXs along with summaries of their volumes and dataType history data filtering by chain. Use \"Arbitrum\" to see Hegic-specific data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "overview",
+                "options",
+                ":chain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "excludeTotalDataChart",
+                  "value": "<boolean>",
+                  "description": "(Required) Set to true to exclude aggregated chart from response"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeTotalDataChartBreakdown",
+                  "value": "<boolean>",
+                  "description": "(Required) Set to true to exclude broken down chart from response"
+                },
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "dailyNotionalVolume",
+                  "description": "Desired data type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chain",
+                  "description": "(Required) Chain name (e.g. \"Arbitrum\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48066c4e-300b-4f96-99e0-c8df78aa793e",
+              "name": "Options DEX volume data filtered by chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "overview",
+                    "options",
+                    ":chain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "excludeTotalDataChart",
+                      "value": "true"
+                    },
+                    {
+                      "key": "excludeTotalDataChartBreakdown",
+                      "value": "true"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "dailyNotionalVolume"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chain",
+                      "description": "(Required) Chain name (e.g. \"Arbitrum\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"protocols\": [\n    {\n      \"name\": \"string\",\n      \"total24h\": 3583.062197423282,\n      \"total7d\": 4955.585829323535,\n      \"totalAllTime\": 7477.602578757659\n    },\n    {\n      \"name\": \"string\",\n      \"total24h\": 1689.6820150142244,\n      \"total7d\": 5991.681376525825,\n      \"totalAllTime\": 7318.740068990524\n    }\n  ],\n  \"totalDataChart\": [\n    [],\n    []\n  ],\n  \"allChains\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3d989ee-4eb6-48c2-9b7d-04e38fa0811c",
+          "name": "Get options DEX volume summary",
+          "request": {
+            "name": "Get options DEX volume summary",
+            "description": {
+              "content": "Get summary of options DEX volume with historical data for a specific protocol. Use protocol slug \"hegic\" to get Hegic-specific options data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "summary",
+                "options",
+                ":protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "dailyNotionalVolume",
+                  "description": "Desired data type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "protocol",
+                  "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a73092e2-29b1-4ed9-aabb-cda892bb0f6f",
+              "name": "Options volume summary with historical data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary",
+                    "options",
+                    ":protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataType",
+                      "value": "dailyNotionalVolume"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "protocol",
+                      "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"total24h\": 7399.33412690408,\n  \"totalAllTime\": 4447.769630168147,\n  \"totalDataChart\": [\n    [],\n    []\n  ],\n  \"chains\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arbiscan.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0fac756b-899e-4ae1-b14e-1b8af7d641fb",
+    "name": "Arbiscan Token API - HEGIC Token Accounts Options API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.\n\n\nContact Support:\n Name: Arbiscan Support",
+      "type": "text/plain"
+    }
+  }
+}

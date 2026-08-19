@@ -1,0 +1,277 @@
+{
+  "item": [
+    {
+      "id": "13d2144f-364d-4ac3-8f6a-8d16cd2520b0",
+      "name": "Prices",
+      "description": {
+        "content": "Token price data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f222b95-1d07-4379-a863-d5b7e543426b",
+          "name": "Get current token prices",
+          "request": {
+            "name": "Get current token prices",
+            "description": {
+              "content": "Get current prices of tokens by contract address. Can be used to get current HEGIC token price on Arbitrum (arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prices",
+                "current",
+                ":coins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchWidth",
+                  "value": "<string>",
+                  "description": "Time range on either side to find price data (defaults to 6 hours)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coins",
+                  "description": "(Required) Comma-separated tokens defined as {chain}:{address} or coingecko:{id}\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1581a02b-66e9-42e4-8c1f-6a9a1f2316c2",
+              "name": "Current token prices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prices",
+                    "current",
+                    ":coins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchWidth",
+                      "value": "4h"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coins",
+                      "description": "(Required) Comma-separated tokens defined as {chain}:{address} or coingecko:{id}\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coins\": {\n    \"key_0\": {\n      \"decimals\": 299,\n      \"price\": 3488.868680374582,\n      \"symbol\": \"string\",\n      \"timestamp\": 560\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7c53c42-237a-4d01-8975-92fdcf596e76",
+          "name": "Get historical token prices",
+          "request": {
+            "name": "Get historical token prices",
+            "description": {
+              "content": "Get historical prices of tokens by contract address at a specific UNIX timestamp.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prices",
+                "historical",
+                ":timestamp",
+                ":coins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchWidth",
+                  "value": "<string>",
+                  "description": "Time range on either side to find price data"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "timestamp",
+                  "description": "(Required) UNIX timestamp of time when you want historical prices"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coins",
+                  "description": "(Required) Comma-separated tokens defined as {chain}:{address}\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f67aa65-3078-44ba-bfed-51f16891ac03",
+              "name": "Historical token prices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prices",
+                    "historical",
+                    ":timestamp",
+                    ":coins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchWidth",
+                      "value": "4h"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "timestamp",
+                      "description": "(Required) UNIX timestamp of time when you want historical prices"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coins",
+                      "description": "(Required) Comma-separated tokens defined as {chain}:{address}\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coins\": {\n    \"key_0\": {\n      \"decimals\": 299,\n      \"price\": 3488.868680374582,\n      \"symbol\": \"string\",\n      \"timestamp\": 560\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arbiscan.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc0005ae-972f-47a8-bbe2-9a3a199f8a29",
+    "name": "Arbiscan Token API - HEGIC Token Accounts Prices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.\n\n\nContact Support:\n Name: Arbiscan Support",
+      "type": "text/plain"
+    }
+  }
+}

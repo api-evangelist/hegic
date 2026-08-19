@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts Contracts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get contract ABI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/contract-abi",
+            "params": [
+              {
+                "name": "module",
+                "value": "contract",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "getabi",
+                "type": "query"
+              },
+              {
+                "name": "address",
+                "value": "0x431402e8b9de9aa016c743880e04e517074d8cec",
+                "type": "query",
+                "description": "Contract address on Arbitrum"
+              },
+              {
+                "name": "apikey",
+                "value": "YourApiKeyToken",
+                "type": "query",
+                "description": "Your Arbiscan API key"
+              }
+            ]
+          },
+          "docs": "Returns the ABI (Application Binary Interface) for the HEGIC token or protocol contracts verified on Arbiscan.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

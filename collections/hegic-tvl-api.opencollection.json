@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts TVL API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TVL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all protocols with TVL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/protocols"
+          },
+          "docs": "List all protocols on DefiLlama along with their TVL, including Hegic"
+        },
+        {
+          "info": {
+            "name": "Get protocol historical TVL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/protocol/:protocol",
+            "params": [
+              {
+                "name": "protocol",
+                "value": "hegic",
+                "type": "path",
+                "description": "Protocol slug (e.g. \"hegic\")"
+              }
+            ]
+          },
+          "docs": "Get historical TVL of a protocol and breakdowns by token and chain. Use protocol slug \"hegic\" to query Hegic-specific data.\n"
+        },
+        {
+          "info": {
+            "name": "Get current TVL of a protocol",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/tvl/:protocol",
+            "params": [
+              {
+                "name": "protocol",
+                "value": "hegic",
+                "type": "path",
+                "description": "Protocol slug (e.g. \"hegic\")"
+              }
+            ]
+          },
+          "docs": "Simplified endpoint to get the current TVL of a protocol. Use protocol slug \"hegic\" to get current Hegic TVL.\n"
+        },
+        {
+          "info": {
+            "name": "Get historical TVL for all chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/v2/historicalChainTvl"
+          },
+          "docs": "Get historical TVL (excludes liquid staking and double counted TVL) of DeFi on all chains\n"
+        },
+        {
+          "info": {
+            "name": "Get historical TVL for a specific chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/v2/historicalChainTvl/:chain",
+            "params": [
+              {
+                "name": "chain",
+                "value": "Arbitrum",
+                "type": "path",
+                "description": "Chain slug (e.g. \"Arbitrum\")"
+              }
+            ]
+          },
+          "docs": "Get historical TVL (excludes liquid staking and double counted TVL) of DeFi on a specific chain (e.g. Arbitrum where Hegic is deployed)\n"
+        },
+        {
+          "info": {
+            "name": "Get current TVL of all chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/v2/chains"
+          },
+          "docs": "Get current TVL of all chains including Arbitrum where Hegic operates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

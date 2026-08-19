@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts Fees API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all protocols with fees and revenue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/overview/fees",
+            "params": [
+              {
+                "name": "excludeTotalDataChart",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true to exclude aggregated chart from response"
+              },
+              {
+                "name": "excludeTotalDataChartBreakdown",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true to exclude broken down chart from response"
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query",
+                "description": "Desired data type"
+              }
+            ]
+          },
+          "docs": "List all protocols along with summaries of their fees and revenue and dataType history data. Includes Hegic protocol fee and revenue data.\n"
+        },
+        {
+          "info": {
+            "name": "Get protocol fees and revenue summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/summary/fees/:protocol",
+            "params": [
+              {
+                "name": "protocol",
+                "value": "hegic",
+                "type": "path",
+                "description": "Protocol slug (e.g. \"hegic\")"
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query",
+                "description": "Desired data type"
+              }
+            ]
+          },
+          "docs": "Get summary of protocol fees and revenue with historical data. Use protocol slug \"hegic\" to get Hegic-specific fee data.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

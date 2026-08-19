@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts Options API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Options",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all options DEXs with volume summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/overview/options",
+            "params": [
+              {
+                "name": "excludeTotalDataChart",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true to exclude aggregated chart from response"
+              },
+              {
+                "name": "excludeTotalDataChartBreakdown",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true to exclude broken down chart from response"
+              },
+              {
+                "name": "dataType",
+                "value": "dailyPremiumVolume",
+                "type": "query",
+                "description": "Desired data type (dailyPremiumVolume or dailyNotionalVolume)"
+              }
+            ]
+          },
+          "docs": "List all options DEXs along with summaries of their volumes and dataType history data. Hegic appears in this list as an on-chain options protocol.\n"
+        },
+        {
+          "info": {
+            "name": "List options DEXs by chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/overview/options/:chain",
+            "params": [
+              {
+                "name": "chain",
+                "value": "Arbitrum",
+                "type": "path",
+                "description": "Chain name (e.g. \"Arbitrum\")"
+              },
+              {
+                "name": "excludeTotalDataChart",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true to exclude aggregated chart from response"
+              },
+              {
+                "name": "excludeTotalDataChartBreakdown",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true to exclude broken down chart from response"
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query",
+                "description": "Desired data type"
+              }
+            ]
+          },
+          "docs": "List all options DEXs along with summaries of their volumes and dataType history data filtering by chain. Use \"Arbitrum\" to see Hegic-specific data.\n"
+        },
+        {
+          "info": {
+            "name": "Get options DEX volume summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/summary/options/:protocol",
+            "params": [
+              {
+                "name": "protocol",
+                "value": "hegic",
+                "type": "path",
+                "description": "Protocol slug (e.g. \"hegic\")"
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query",
+                "description": "Desired data type"
+              }
+            ]
+          },
+          "docs": "Get summary of options DEX volume with historical data for a specific protocol. Use protocol slug \"hegic\" to get Hegic-specific options data.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

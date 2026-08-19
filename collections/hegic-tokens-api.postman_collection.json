@@ -1,0 +1,341 @@
+{
+  "item": [
+    {
+      "id": "f4f5660a-bf11-4c85-adfb-17329ae36676",
+      "name": "Tokens",
+      "description": {
+        "content": "ERC-20 token data for HEGIC token on Arbitrum",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1807902-fba9-4e80-a09b-bd765e247daf",
+          "name": "Get ERC-20 token supply",
+          "request": {
+            "name": "Get ERC-20 token supply",
+            "description": {
+              "content": "Returns the total supply of ERC-20 tokens for the HEGIC token contract on Arbitrum One.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "module",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) HEGIC token contract address on Arbitrum"
+                },
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "(Required) Your Arbiscan API key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2964978-6f3a-41bb-bf69-dbdf4eed6a38",
+              "name": "Token supply response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "module",
+                      "value": "stats"
+                    },
+                    {
+                      "key": "action",
+                      "value": "tokensupply"
+                    },
+                    {
+                      "key": "contractaddress",
+                      "value": "0x431402e8b9de9aa016c743880e04e517074d8cec"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "YourApiKeyToken"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"1\",\n  \"message\": \"OK\",\n  \"result\": \"1000000000000000000000000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3de07899-7e7c-4cb7-beb9-274444318593",
+          "name": "Get ERC-20 token transfer events",
+          "request": {
+            "name": "Get ERC-20 token transfer events",
+            "description": {
+              "content": "Returns ERC-20 token transfer events for the HEGIC token contract on Arbitrum One, optionally filtered by address.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token-transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "module",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "contractaddress",
+                  "value": "<string>",
+                  "description": "(Required) HEGIC token contract address on Arbitrum"
+                },
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "Filter by specific wallet address"
+                },
+                {
+                  "disabled": false,
+                  "key": "startblock",
+                  "value": "<integer>",
+                  "description": "Start block number"
+                },
+                {
+                  "disabled": false,
+                  "key": "endblock",
+                  "value": "<integer>",
+                  "description": "End block number"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "10",
+                  "description": "Number of results per page (max 10000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "asc",
+                  "description": "Sort order"
+                },
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "(Required) Your Arbiscan API key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0f91607-d002-473c-9e5f-a4210b190309",
+              "name": "Token transfer events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token-transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "module",
+                      "value": "account"
+                    },
+                    {
+                      "key": "action",
+                      "value": "tokentx"
+                    },
+                    {
+                      "key": "contractaddress",
+                      "value": "0x431402e8b9de9aa016c743880e04e517074d8cec"
+                    },
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startblock",
+                      "value": "0"
+                    },
+                    {
+                      "key": "endblock",
+                      "value": "99999999"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "YourApiKeyToken"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"result\": [\n    {\n      \"blockNumber\": \"string\",\n      \"timeStamp\": \"string\",\n      \"hash\": \"string\",\n      \"nonce\": \"string\",\n      \"blockHash\": \"string\",\n      \"from\": \"string\",\n      \"contractAddress\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"tokenName\": \"Hegic\",\n      \"tokenSymbol\": \"HEGIC\",\n      \"tokenDecimal\": \"18\",\n      \"transactionIndex\": \"string\",\n      \"gas\": \"string\",\n      \"gasPrice\": \"string\",\n      \"gasUsed\": \"string\",\n      \"cumulativeGasUsed\": \"string\",\n      \"confirmations\": \"string\"\n    },\n    {\n      \"blockNumber\": \"string\",\n      \"timeStamp\": \"string\",\n      \"hash\": \"string\",\n      \"nonce\": \"string\",\n      \"blockHash\": \"string\",\n      \"from\": \"string\",\n      \"contractAddress\": \"string\",\n      \"to\": \"string\",\n      \"value\": \"string\",\n      \"tokenName\": \"Hegic\",\n      \"tokenSymbol\": \"HEGIC\",\n      \"tokenDecimal\": \"18\",\n      \"transactionIndex\": \"string\",\n      \"gas\": \"string\",\n      \"gasPrice\": \"string\",\n      \"gasUsed\": \"string\",\n      \"cumulativeGasUsed\": \"string\",\n      \"confirmations\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arbiscan.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "26848bb5-fd75-4650-b3d3-41209674bf5f",
+    "name": "Arbiscan Token API - HEGIC Token Accounts Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.\n\n\nContact Support:\n Name: Arbiscan Support",
+      "type": "text/plain"
+    }
+  }
+}

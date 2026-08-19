@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts Prices API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current token prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/prices/current/:coins",
+            "params": [
+              {
+                "name": "coins",
+                "value": "arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec",
+                "type": "path",
+                "description": "Comma-separated tokens defined as {chain}:{address} or coingecko:{id}\n"
+              },
+              {
+                "name": "searchWidth",
+                "value": "4h",
+                "type": "query",
+                "description": "Time range on either side to find price data (defaults to 6 hours)"
+              }
+            ]
+          },
+          "docs": "Get current prices of tokens by contract address. Can be used to get current HEGIC token price on Arbitrum (arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec).\n"
+        },
+        {
+          "info": {
+            "name": "Get historical token prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/prices/historical/:timestamp/:coins",
+            "params": [
+              {
+                "name": "timestamp",
+                "value": "1648680149",
+                "type": "path",
+                "description": "UNIX timestamp of time when you want historical prices"
+              },
+              {
+                "name": "coins",
+                "value": "arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec",
+                "type": "path",
+                "description": "Comma-separated tokens defined as {chain}:{address}\n"
+              },
+              {
+                "name": "searchWidth",
+                "value": "4h",
+                "type": "query",
+                "description": "Time range on either side to find price data"
+              }
+            ]
+          },
+          "docs": "Get historical prices of tokens by contract address at a specific UNIX timestamp.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

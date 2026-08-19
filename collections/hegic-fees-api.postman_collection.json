@@ -1,0 +1,263 @@
+{
+  "item": [
+    {
+      "id": "1ce73b3c-3e66-4505-82c5-08b6dd37b6e3",
+      "name": "Fees",
+      "description": {
+        "content": "Protocol fees and revenue",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d83a2e75-0853-4343-97a3-ac3df0120f9e",
+          "name": "List all protocols with fees and revenue",
+          "request": {
+            "name": "List all protocols with fees and revenue",
+            "description": {
+              "content": "List all protocols along with summaries of their fees and revenue and dataType history data. Includes Hegic protocol fee and revenue data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "overview",
+                "fees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "excludeTotalDataChart",
+                  "value": "<boolean>",
+                  "description": "(Required) Set to true to exclude aggregated chart from response"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeTotalDataChartBreakdown",
+                  "value": "<boolean>",
+                  "description": "(Required) Set to true to exclude broken down chart from response"
+                },
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "dailyFees",
+                  "description": "Desired data type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89666963-10f2-4ef6-812f-64f9ffccd401",
+              "name": "Protocol fee and revenue data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "overview",
+                    "fees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "excludeTotalDataChart",
+                      "value": "true"
+                    },
+                    {
+                      "key": "excludeTotalDataChartBreakdown",
+                      "value": "true"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "dailyFees"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"protocols\": [\n    {\n      \"name\": \"string\",\n      \"total24h\": 1039.7247757792084,\n      \"total7d\": 2840.5449396116232\n    },\n    {\n      \"name\": \"string\",\n      \"total24h\": 3831.3979968999856,\n      \"total7d\": 1045.4379994920382\n    }\n  ],\n  \"totalDataChart\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "976bb4cb-752e-4e7a-a498-53f0e834b172",
+          "name": "Get protocol fees and revenue summary",
+          "request": {
+            "name": "Get protocol fees and revenue summary",
+            "description": {
+              "content": "Get summary of protocol fees and revenue with historical data. Use protocol slug \"hegic\" to get Hegic-specific fee data.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "summary",
+                "fees",
+                ":protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "dailyFees",
+                  "description": "Desired data type"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "protocol",
+                  "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe9cab9a-8316-4f01-b45f-e5d5569b8d60",
+              "name": "Protocol fees and revenue summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary",
+                    "fees",
+                    ":protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataType",
+                      "value": "dailyFees"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "protocol",
+                      "description": "(Required) Protocol slug (e.g. \"hegic\")"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"symbol\": \"string\",\n  \"category\": \"string\",\n  \"total24h\": 5421.952831706391,\n  \"change_1d\": 4964.274769623001,\n  \"totalDataChart\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arbiscan.io/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "52cee094-fe09-4b9d-a5a2-6a1c0cb7447c",
+    "name": "Arbiscan Token API - HEGIC Token Accounts Fees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.\n\n\nContact Support:\n Name: Arbiscan Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arbiscan Token API - HEGIC Token Accounts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ERC-20 token account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arbiscan.io/api/token-balance",
+            "params": [
+              {
+                "name": "module",
+                "value": "account",
+                "type": "query"
+              },
+              {
+                "name": "action",
+                "value": "tokenbalance",
+                "type": "query"
+              },
+              {
+                "name": "contractaddress",
+                "value": "0x431402e8b9de9aa016c743880e04e517074d8cec",
+                "type": "query",
+                "description": "HEGIC token contract address on Arbitrum"
+              },
+              {
+                "name": "address",
+                "value": "0x000000000000000000000000000000000000dead",
+                "type": "query",
+                "description": "Wallet address to query"
+              },
+              {
+                "name": "tag",
+                "value": "latest",
+                "type": "query",
+                "description": "Block tag (latest or a specific block number)"
+              },
+              {
+                "name": "apikey",
+                "value": "YourApiKeyToken",
+                "type": "query",
+                "description": "Your Arbiscan API key"
+              }
+            ]
+          },
+          "docs": "Returns the ERC-20 token balance of a specific address for the HEGIC token contract on Arbitrum One.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
