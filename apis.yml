@@ -25,6 +25,16 @@ image: https://hegic.co/favicon.ico
 tags:
 - DeFi
 - Options Trading
+- Onchain
+- Arbitrum
+- Ethereum
+- Liquidity Pools
+- AMM
+- Derivatives
+- Web3
+tags_raw:
+- DeFi
+- Options Trading
 - On-Chain
 - Arbitrum
 - Ethereum
@@ -108,6 +118,8 @@ apis:
   humanURL: https://defillama.com/protocol/hegic
   baseURL: https://api.llama.fi
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
