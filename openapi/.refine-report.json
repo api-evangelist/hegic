@@ -1,26 +1,33 @@
 {
   "provider": "hegic",
   "sources": [
-    "hegic-accounts-api-openapi.yml",
-    "hegic-contracts-api-openapi.yml",
-    "hegic-fees-api-openapi.yml",
-    "hegic-options-api-openapi.yml",
-    "hegic-prices-api-openapi.yml",
-    "hegic-tokens-api-openapi.yml",
-    "hegic-tvl-api-openapi.yml"
+    "_original/arbiscan-token.yml",
+    "_original/defillama-hegic.yml"
   ],
   "outputs": [
     "hegic-accounts-api-openapi.yml",
     "hegic-contracts-api-openapi.yml",
+    "hegic-tokens-api-openapi.yml",
     "hegic-fees-api-openapi.yml",
     "hegic-options-api-openapi.yml",
     "hegic-prices-api-openapi.yml",
-    "hegic-tokens-api-openapi.yml",
     "hegic-tvl-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "arbiscan-token.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "defillama-hegic.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "hegic-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hegic-contracts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hegic-fees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hegic-options-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hegic-prices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hegic-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hegic-tvl-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,21 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Arbiscan Token API - HEGIC Token Accounts TVL API
-  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
+  title: DefiLlama Hegic Protocol TVL API
+  description: 'Public REST API provided by DefiLlama for querying Hegic protocol metrics including TVL, fees, revenue, and options volume. Returns historical and current data across Arbitrum and Ethereum deployments with no authentication required. Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum enabling ETH and WBTC call and put options trading.
 
     '
   version: 1.0.0
   contact:
-    name: Arbiscan Support
-    url: https://arbiscan.io
+    name: DefiLlama Team
+    url: https://defillama.com
   license:
-    name: Arbiscan Terms of Service
-    url: https://arbiscan.io/terms
+    name: MIT
+    url: https://github.com/DefiLlama/defillama-server/blob/master/LICENSE
 servers:
-- url: https://api.arbiscan.io/api
-  description: Arbiscan API for Arbitrum One
-security:
-- ApiKeyQuery: []
+- url: https://api.llama.fi
+  description: DefiLlama Free API (no authentication required)
 tags:
 - name: TVL
   description: Total Value Locked data for Hegic and other protocols
@@ -162,30 +160,6 @@ components:
           type: string
         chainId:
           type: integer
-    ProtocolDetail:
-      type: object
-      description: Detailed protocol data including historical TVL
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        symbol:
-          type: string
-        category:
-          type: string
-        chains:
-          type: array
-          items:
-            type: string
-        currentChainTvls:
-          type: object
-          additionalProperties:
-            type: number
-          description: Current TVL per chain
-        chainTvls:
-          type: object
-          description: Historical TVL broken down by chain
     ProtocolSummary:
       type: object
       description: Summary of a DeFi protocol including Hegic
@@ -221,6 +195,30 @@ components:
         change_7d:
           type: number
           description: 7-day TVL change percentage
+    ProtocolDetail:
+      type: object
+      description: Detailed protocol data including historical TVL
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        category:
+          type: string
+        chains:
+          type: array
+          items:
+            type: string
+        currentChainTvls:
+          type: object
+          additionalProperties:
+            type: number
+          description: Current TVL per chain
+        chainTvls:
+          type: object
+          description: Historical TVL broken down by chain
     TvlDataPoint:
       type: object
       properties:
@@ -230,11 +228,6 @@ components:
         tvl:
           type: number
           description: TVL in USD at this date
-  securitySchemes:
-    ApiKeyQuery:
-      type: apiKey
-      in: query
-      name: apikey
 externalDocs:
-  description: Arbiscan API Documentation
-  url: https://docs.arbiscan.io
+  description: DefiLlama API Documentation
+  url: https://defillama.com/docs/api
