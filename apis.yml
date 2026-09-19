@@ -69,6 +69,12 @@ apis:
   humanURL: https://arbiscan.io/token/0x431402e8b9de9aa016c743880e04e517074d8cec
   baseURL: https://api.arbiscan.io
   tags:
+  - Tokens
+  - ERC-20
+  - Arbitrum
+  - On-Chain Data
+  - Transfer Events
+  tags_raw:
   - Token
   - ERC-20
   - Arbitrum
