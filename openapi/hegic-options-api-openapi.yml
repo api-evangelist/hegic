@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: DefiLlama Hegic Protocol Options API
-  description: 'Public REST API provided by DefiLlama for querying Hegic protocol metrics including TVL, fees, revenue, and options volume. Returns historical and current data across Arbitrum and Ethereum deployments with no authentication required. Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum enabling ETH and WBTC call and put options trading.
-
-    '
+  description: Public REST API provided by DefiLlama for querying Hegic protocol metrics including TVL, fees, revenue, and options volume. Returns historical and current data across Arbitrum and Ethereum deployments with no authentication required. Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum enabling ETH and WBTC call and put options trading.
   version: 1.0.0
   contact:
     name: DefiLlama Team
@@ -21,9 +19,7 @@ paths:
   /overview/options:
     get:
       summary: List all options DEXs with volume summaries
-      description: 'List all options DEXs along with summaries of their volumes and dataType history data. Hegic appears in this list as an on-chain options protocol.
-
-        '
+      description: List all options DEXs along with summaries of their volumes and dataType history data. Hegic appears in this list as an on-chain options protocol.
       operationId: listOptionsDexs
       tags:
       - Options
@@ -63,9 +59,7 @@ paths:
   /overview/options/{chain}:
     get:
       summary: List options DEXs by chain
-      description: 'List all options DEXs along with summaries of their volumes and dataType history data filtering by chain. Use "Arbitrum" to see Hegic-specific data.
-
-        '
+      description: List all options DEXs along with summaries of their volumes and dataType history data filtering by chain. Use "Arbitrum" to see Hegic-specific data.
       operationId: listOptionsDexsByChain
       tags:
       - Options
@@ -111,9 +105,7 @@ paths:
   /summary/options/{protocol}:
     get:
       summary: Get options DEX volume summary
-      description: 'Get summary of options DEX volume with historical data for a specific protocol. Use protocol slug "hegic" to get Hegic-specific options data.
-
-        '
+      description: Get summary of options DEX volume with historical data for a specific protocol. Use protocol slug "hegic" to get Hegic-specific options data.
       operationId: getOptionsSummary
       tags:
       - Options
@@ -144,6 +136,29 @@ paths:
                 $ref: '#/components/schemas/ProtocolVolumeSummary'
 components:
   schemas:
+    ProtocolVolumeSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        total24h:
+          type: number
+          description: Volume in last 24 hours
+        totalAllTime:
+          type: number
+          description: All-time volume
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+        chains:
+          type: array
+          items:
+            type: string
     DexOverview:
       type: object
       properties:
@@ -165,29 +180,6 @@ components:
           items:
             type: array
         allChains:
-          type: array
-          items:
-            type: string
-    ProtocolVolumeSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        total24h:
-          type: number
-          description: Volume in last 24 hours
-        totalAllTime:
-          type: number
-          description: All-time volume
-        totalDataChart:
-          type: array
-          items:
-            type: array
-        totalDataChartBreakdown:
-          type: array
-          items:
-            type: object
-        chains:
           type: array
           items:
             type: string

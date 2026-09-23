@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: Arbiscan Token API - HEGIC Token Accounts API
-  description: 'Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
-
-    '
+  description: Block explorer API for querying Hegic (HEGIC) token data on Arbitrum One, including token supply, holder information, transfer events, and contract interactions. The HEGIC token contract address on Arbitrum is 0x431402e8b9de9aa016c743880e04e517074d8cec. All endpoints require an API key obtained from https://arbiscan.io/myapikey.
   version: 1.0.0
   contact:
     name: Arbiscan Support
@@ -23,9 +21,7 @@ paths:
   /token-balance:
     get:
       summary: Get ERC-20 token account balance
-      description: 'Returns the ERC-20 token balance of a specific address for the HEGIC token contract on Arbitrum One.
-
-        '
+      description: Returns the ERC-20 token balance of a specific address for the HEGIC token contract on Arbitrum One.
       operationId: getTokenBalance
       tags:
       - Accounts

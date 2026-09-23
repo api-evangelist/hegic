@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: DefiLlama Hegic Protocol Prices API
-  description: 'Public REST API provided by DefiLlama for querying Hegic protocol metrics including TVL, fees, revenue, and options volume. Returns historical and current data across Arbitrum and Ethereum deployments with no authentication required. Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum enabling ETH and WBTC call and put options trading.
-
-    '
+  description: Public REST API provided by DefiLlama for querying Hegic protocol metrics including TVL, fees, revenue, and options volume. Returns historical and current data across Arbitrum and Ethereum deployments with no authentication required. Hegic is an on-chain peer-to-pool options trading protocol deployed on Arbitrum enabling ETH and WBTC call and put options trading.
   version: 1.0.0
   contact:
     name: DefiLlama Team
@@ -21,9 +19,7 @@ paths:
   /prices/current/{coins}:
     get:
       summary: Get current token prices
-      description: 'Get current prices of tokens by contract address. Can be used to get current HEGIC token price on Arbitrum (arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec).
-
-        '
+      description: Get current prices of tokens by contract address. Can be used to get current HEGIC token price on Arbitrum (arbitrum:0x431402e8b9de9aa016c743880e04e517074d8cec).
       operationId: getCurrentPrices
       tags:
       - Prices
@@ -54,9 +50,7 @@ paths:
   /prices/historical/{timestamp}/{coins}:
     get:
       summary: Get historical token prices
-      description: 'Get historical prices of tokens by contract address at a specific UNIX timestamp.
-
-        '
+      description: Get historical prices of tokens by contract address at a specific UNIX timestamp.
       operationId: getHistoricalPrices
       tags:
       - Prices
