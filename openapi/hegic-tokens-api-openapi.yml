@@ -167,6 +167,19 @@ paths:
                       $ref: '#/components/schemas/TokenTransfer'
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: 1 for success, 0 for error
+          example: '1'
+        message:
+          type: string
+          description: Response message
+          example: OK
+        result:
+          description: Response payload (varies by endpoint)
     TokenTransfer:
       type: object
       properties:
@@ -214,19 +227,6 @@ components:
           type: string
         confirmations:
           type: string
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: 1 for success, 0 for error
-          example: '1'
-        message:
-          type: string
-          description: Response message
-          example: OK
-        result:
-          description: Response payload (varies by endpoint)
   securitySchemes:
     ApiKeyQuery:
       type: apiKey
