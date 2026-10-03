@@ -91,6 +91,28 @@ paths:
                 $ref: '#/components/schemas/FeesSummary'
 components:
   schemas:
+    FeesOverview:
+      type: object
+      properties:
+        protocols:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              total24h:
+                type: number
+              total7d:
+                type: number
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
     FeesSummary:
       type: object
       properties:
@@ -108,28 +130,6 @@ components:
         change_1d:
           type: number
           description: 1-day change percentage
-        totalDataChart:
-          type: array
-          items:
-            type: array
-        totalDataChartBreakdown:
-          type: array
-          items:
-            type: object
-    FeesOverview:
-      type: object
-      properties:
-        protocols:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              total24h:
-                type: number
-              total7d:
-                type: number
         totalDataChart:
           type: array
           items:

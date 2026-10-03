@@ -159,6 +159,15 @@ components:
         chainTvls:
           type: object
           description: Historical TVL broken down by chain
+    TvlDataPoint:
+      type: object
+      properties:
+        date:
+          type: integer
+          description: UNIX timestamp
+        tvl:
+          type: number
+          description: TVL in USD at this date
     ProtocolSummary:
       type: object
       description: Summary of a DeFi protocol including Hegic
@@ -194,15 +203,6 @@ components:
         change_7d:
           type: number
           description: 7-day TVL change percentage
-    TvlDataPoint:
-      type: object
-      properties:
-        date:
-          type: integer
-          description: UNIX timestamp
-        tvl:
-          type: number
-          description: TVL in USD at this date
     ChainTvl:
       type: object
       properties:

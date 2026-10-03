@@ -136,6 +136,29 @@ paths:
                 $ref: '#/components/schemas/ProtocolVolumeSummary'
 components:
   schemas:
+    ProtocolVolumeSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        total24h:
+          type: number
+          description: Volume in last 24 hours
+        totalAllTime:
+          type: number
+          description: All-time volume
+        totalDataChart:
+          type: array
+          items:
+            type: array
+        totalDataChartBreakdown:
+          type: array
+          items:
+            type: object
+        chains:
+          type: array
+          items:
+            type: string
     DexOverview:
       type: object
       properties:
@@ -157,29 +180,6 @@ components:
           items:
             type: array
         allChains:
-          type: array
-          items:
-            type: string
-    ProtocolVolumeSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        total24h:
-          type: number
-          description: Volume in last 24 hours
-        totalAllTime:
-          type: number
-          description: All-time volume
-        totalDataChart:
-          type: array
-          items:
-            type: array
-        totalDataChartBreakdown:
-          type: array
-          items:
-            type: object
-        chains:
           type: array
           items:
             type: string
