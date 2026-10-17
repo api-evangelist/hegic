@@ -135,15 +135,6 @@ paths:
                   $ref: '#/components/schemas/ChainTvl'
 components:
   schemas:
-    TvlDataPoint:
-      type: object
-      properties:
-        date:
-          type: integer
-          description: UNIX timestamp
-        tvl:
-          type: number
-          description: TVL in USD at this date
     ChainTvl:
       type: object
       properties:
@@ -159,6 +150,39 @@ components:
           type: string
         chainId:
           type: integer
+    ProtocolDetail:
+      type: object
+      description: Detailed protocol data including historical TVL
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        category:
+          type: string
+        chains:
+          type: array
+          items:
+            type: string
+        currentChainTvls:
+          type: object
+          additionalProperties:
+            type: number
+          description: Current TVL per chain
+        chainTvls:
+          type: object
+          description: Historical TVL broken down by chain
+    TvlDataPoint:
+      type: object
+      properties:
+        date:
+          type: integer
+          description: UNIX timestamp
+        tvl:
+          type: number
+          description: TVL in USD at this date
     ProtocolSummary:
       type: object
       description: Summary of a DeFi protocol including Hegic
@@ -194,30 +218,6 @@ components:
         change_7d:
           type: number
           description: 7-day TVL change percentage
-    ProtocolDetail:
-      type: object
-      description: Detailed protocol data including historical TVL
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        symbol:
-          type: string
-        category:
-          type: string
-        chains:
-          type: array
-          items:
-            type: string
-        currentChainTvls:
-          type: object
-          additionalProperties:
-            type: number
-          description: Current TVL per chain
-        chainTvls:
-          type: object
-          description: Historical TVL broken down by chain
 externalDocs:
   description: DefiLlama API Documentation
   url: https://defillama.com/docs/api
